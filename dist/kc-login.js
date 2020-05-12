@@ -27,7 +27,7 @@ Cypress.Commands.add("kcLogin", function (user) {
             // const form = html.getElementsByTagName("form")[0];
             // const url = form.action;
             var redirectURL = response.headers.location;
-            var urlParams = new URLSearchParams(redirectURL).get;
+            var urlParams = new URLSearchParams(redirectURL).get('session_code');
             var authCode = 'placeholder';
             var url = 'placeholder';
             cy.log('2 redirectURL: ' + redirectURL); // GW
