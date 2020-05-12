@@ -24,12 +24,17 @@ Cypress.Commands.add("kcLogin", (user: string) => {
       }
     })
       .then(response => {
-        const html = document.createElement("html");
-        html.innerHTML = response.body;
+        // const html = document.createElement("html");
+        // html.innerHTML = response.body;
 
-        const form = html.getElementsByTagName("form")[0];
-        const url = form.action;
-        
+        // const form = html.getElementsByTagName("form")[0];
+        // const url = form.action;
+        const url = response.body;
+        const hdr = response.headers;
+
+        cy.log('2 url: ' + url); // GW
+        cy.log('2 hdr: ' + hdr);
+
         return cy.request({
           method: "POST",
           url,

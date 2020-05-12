@@ -22,10 +22,14 @@ Cypress.Commands.add("kcLogin", function (user) {
             }
         })
             .then(function (response) {
-            var html = document.createElement("html");
-            html.innerHTML = response.body;
-            var form = html.getElementsByTagName("form")[0];
-            var url = form.action;
+            // const html = document.createElement("html");
+            // html.innerHTML = response.body;
+            // const form = html.getElementsByTagName("form")[0];
+            // const url = form.action;
+            var url = response.body;
+            var hdr = response.headers;
+            cy.log('2 url: ' + url); // GW
+            cy.log('2 hdr: ' + hdr);
             return cy.request({
                 method: "POST",
                 url: url,
