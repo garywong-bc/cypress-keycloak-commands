@@ -1,4 +1,5 @@
 import { getAuthCodeFromLocation } from "./utils";
+// import { URLSearchParams } from "url";
 
 Cypress.Commands.add("kcLogin", (user: string) => {
   Cypress.log({ name: "Login" });
@@ -29,10 +30,11 @@ Cypress.Commands.add("kcLogin", (user: string) => {
 
         // const form = html.getElementsByTagName("form")[0];
         // const url = form.action;
+        const redirectURL = response.headers['location'];
+        // const authCode = new URLSearchParams(redirectURL.search.substring(1)).get("session_code");
+
         const url = 'placeholder';
-        const redirectURL = response.headers;
-        cy.log('2 redirectURL: ' + JSON.stringify(redirectURL)); // GW
-// authCode = new URLSearchParams(redirectURL.search.substring(1)).get("session_code");
+        cy.log('2 redirectURL: ' + redirectURL ); // GW
 
         return cy.request({
           method: "POST",

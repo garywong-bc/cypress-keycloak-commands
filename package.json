@@ -35,7 +35,9 @@
     "url": "https://github.com/Fredx87/cypress-keycloak-commands/issues"
   },
   "homepage": "https://github.com/Fredx87/cypress-keycloak-commands#readme",
-  "dependencies": {},
+  "dependencies": {
+    "url": "^0.11.0"
+  },
   "devDependencies": {
     "@cypress/webpack-preprocessor": "^4.1.1",
     "@testing-library/cypress": "^5.0.2",

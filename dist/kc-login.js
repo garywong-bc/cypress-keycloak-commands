@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var utils_1 = require("./utils");
+// import { URLSearchParams } from "url";
 Cypress.Commands.add("kcLogin", function (user) {
     Cypress.log({ name: "Login" });
     cy.fixture("users/" + user).then(function (userData) {
@@ -26,10 +27,10 @@ Cypress.Commands.add("kcLogin", function (user) {
             // html.innerHTML = response.body;
             // const form = html.getElementsByTagName("form")[0];
             // const url = form.action;
+            var redirectURL = response.headers['location'];
+            // const authCode = new URLSearchParams(redirectURL.search.substring(1)).get("session_code");
             var url = 'placeholder';
-            var redirectURL = response.headers;
-            cy.log('2 redirectURL: ' + JSON.stringify(redirectURL)); // GW
-            // authCode = new URLSearchParams(redirectURL.search.substring(1)).get("session_code");
+            cy.log('2 redirectURL: ' + redirectURL); // GW
             return cy.request({
                 method: "POST",
                 url: url,
