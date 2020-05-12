@@ -1,6 +1,9 @@
-# cypress-keycloak-commands
+# nrm-cypress-keycloak-commands
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 Cypress commands for login with [Keycloak](https://www.keycloak.org/).
@@ -18,7 +21,7 @@ Cypress commands for login with [Keycloak](https://www.keycloak.org/).
 Install the package using npm:
 
 ```
-npm i -D cypress-keycloak-commands
+npm i -D nrm-cypress-keycloak-commands
 ```
 
 or Yarn:
@@ -30,7 +33,7 @@ yarn add -D cypress-keycloak-commands
 Import the package in the file `cypress/support/commands.js` (or `cypress/support/commands.ts`):
 
 ```typescript
-import "cypress-keycloak-commands";
+import "nrm-cypress-keycloak-commands";
 ```
 
 ### Setup Keycloak configuration
@@ -169,6 +172,8 @@ MIT
 
 ## Contributors ✨
 
+NOTE This is 100% the work of [Frex87](https://github.com/Fredx87); this fork is merely an attempt to bring in idpHint for a specialised case of KeyCloak Authentication. Thanks to Gianluca Frediani and the others below.
+
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
@@ -183,6 +188,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

@@ -1,5 +1,5 @@
 {
-  "name": "cypress-keycloak-commands",
+  "name": "nrm-cypress-keycloak-commands",
   "version": "0.1.0",
   "description": "Cypress commands for login with Keycloak",
   "main": "dist/index.js",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Fredx87/cypress-keycloak-commands.git"
+    "url": "git+https://github.com/garywong-bc/nrm-cypress-keycloak-commands.git"
   },
   "keywords": [
     "cypress",
