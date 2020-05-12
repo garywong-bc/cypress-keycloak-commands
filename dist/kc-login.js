@@ -28,10 +28,11 @@ Cypress.Commands.add("kcLogin", function (user) {
             // const url = form.action;
             var redirectURL = response.headers.location;
             var urlParams = new URLSearchParams(redirectURL);
-            // const authCode = new URLSearchParams(redirectURL.search.substring(1)).get("session_code");
+            var authCode = urlParams.get('session_code');
             var url = 'placeholder';
             cy.log('2 redirectURL: ' + redirectURL); // GW
             cy.log('2 urlParams: ' + urlParams); // GW
+            cy.log('2 authCode: ' + authCode); // GW
             return cy.request({
                 method: "POST",
                 url: url,
