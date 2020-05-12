@@ -7,6 +7,11 @@ Cypress.Commands.add("kcLogin", (user: string) => {
     const authBaseUrl = Cypress.env("auth_base_url");
     const realm = Cypress.env("auth_realm");
     const client_id = Cypress.env("auth_client_id");
+    const kc_idp_hint = Cypress.env("auth_idp_hint");
+
+    cy.log('Start'); // GW
+    cy.log(kc_idp_hint);
+    cy.log('Start');
 
     cy.request({
       url: `${authBaseUrl}/realms/${realm}/protocol/openid-connect/auth`,
@@ -16,7 +21,8 @@ Cypress.Commands.add("kcLogin", (user: string) => {
         response_type: "code",
         approval_prompt: "auto",
         redirect_uri: Cypress.config("baseUrl"),
-        client_id
+        client_id,
+        kc_idp_hint
       }
     })
       .then(response => {
@@ -25,6 +31,11 @@ Cypress.Commands.add("kcLogin", (user: string) => {
 
         const form = html.getElementsByTagName("form")[0];
         const url = form.action;
+
+        cy.log('Start'); // GW
+        const zz = response.body;
+        cy.log(zz);
+        cy.log('Start');
 
         return cy.request({
           method: "POST",
@@ -38,8 +49,7 @@ Cypress.Commands.add("kcLogin", (user: string) => {
         });
       })
       .then(response => {
-        const code = getAuthCodeFromLocation(response.headers["location"]);
-
+        const code = getAuthCodeFromLocation(response.headers["location"]);        
         cy.request({
           method: "post",
           url: `${authBaseUrl}/realms/${realm}/protocol/openid-connect/token`,

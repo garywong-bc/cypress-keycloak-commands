@@ -7,6 +7,10 @@ Cypress.Commands.add("kcLogin", function (user) {
         var authBaseUrl = Cypress.env("auth_base_url");
         var realm = Cypress.env("auth_realm");
         var client_id = Cypress.env("auth_client_id");
+        var kc_idp_hint = Cypress.env("auth_idp_hint");
+        cy.log('Start'); // GW
+        cy.log(kc_idp_hint);
+        cy.log('Start');
         cy.request({
             url: authBaseUrl + "/realms/" + realm + "/protocol/openid-connect/auth",
             followRedirect: false,
@@ -15,7 +19,8 @@ Cypress.Commands.add("kcLogin", function (user) {
                 response_type: "code",
                 approval_prompt: "auto",
                 redirect_uri: Cypress.config("baseUrl"),
-                client_id: client_id
+                client_id: client_id,
+                kc_idp_hint: kc_idp_hint
             }
         })
             .then(function (response) {
@@ -23,6 +28,10 @@ Cypress.Commands.add("kcLogin", function (user) {
             html.innerHTML = response.body;
             var form = html.getElementsByTagName("form")[0];
             var url = form.action;
+            cy.log('Start'); // GW
+            var zz = response.body;
+            cy.log(zz);
+            cy.log('Start');
             return cy.request({
                 method: "POST",
                 url: url,
