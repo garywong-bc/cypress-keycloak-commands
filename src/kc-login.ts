@@ -7,10 +7,10 @@ Cypress.Commands.add("kcLogin", (user: string) => {
     const authBaseUrl = Cypress.env("auth_base_url");
     const realm = Cypress.env("auth_realm");
     const client_id = Cypress.env("auth_client_id");
-    const kc_idp_hint = Cypress.env("auth_idp_hint");
+    const idpHint = Cypress.env("auth_idp_hint");
 
     cy.log('1 authBaseUrl: ' + authBaseUrl); // GW
-    cy.log('1 idpHint: ' + kc_idp_hint);
+    cy.log('1 idpHint: ' + idpHint);
     cy.log('1 redirect_uri: ' + Cypress.config("baseUrl") );
 
     cy.request({
@@ -20,7 +20,7 @@ Cypress.Commands.add("kcLogin", (user: string) => {
         response_type: "code",
         client_id,
         redirect_uri: Cypress.config("baseUrl"),
-        kc_idp_hint
+        kc_idp_hint: idpHint
       }
     })
       .then(response => {

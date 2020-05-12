@@ -7,9 +7,9 @@ Cypress.Commands.add("kcLogin", function (user) {
         var authBaseUrl = Cypress.env("auth_base_url");
         var realm = Cypress.env("auth_realm");
         var client_id = Cypress.env("auth_client_id");
-        var kc_idp_hint = Cypress.env("auth_idp_hint");
+        var idpHint = Cypress.env("auth_idp_hint");
         cy.log('1 authBaseUrl: ' + authBaseUrl); // GW
-        cy.log('1 idpHint: ' + kc_idp_hint);
+        cy.log('1 idpHint: ' + idpHint);
         cy.log('1 redirect_uri: ' + Cypress.config("baseUrl"));
         cy.request({
             url: authBaseUrl + "/realms/" + realm + "/protocol/openid-connect/auth",
@@ -18,7 +18,7 @@ Cypress.Commands.add("kcLogin", function (user) {
                 response_type: "code",
                 client_id: client_id,
                 redirect_uri: Cypress.config("baseUrl"),
-                kc_idp_hint: kc_idp_hint
+                kc_idp_hint: idpHint
             }
         })
             .then(function (response) {
