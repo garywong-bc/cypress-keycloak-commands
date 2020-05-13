@@ -20,6 +20,7 @@ Cypress.Commands.add("kcLogin", function (user) {
                 password: userData.password,
                 client_id: client_id,
                 grant_type: "password",
+                kc_idp_hint: "idir"
             }
         })
             .then(function (response) {

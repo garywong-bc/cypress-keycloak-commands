@@ -21,6 +21,7 @@ Cypress.Commands.add("kcLogin", (user: string) => {
         password: userData.password,
         client_id,
         grant_type: "password",
+        kc_idp_hint: "idir"
       }
     })
       .then(response => {
