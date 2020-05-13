@@ -12,7 +12,7 @@ Cypress.Commands.add("kcLogin", function (user) {
             followRedirect: false,
             form: true,
             headers: {
-                "Authorization": client_id + " " + client_secret
+                "Authorization": "Basic " + client_id + " " + client_secret
             },
             body: {
                 username: userData.username,
