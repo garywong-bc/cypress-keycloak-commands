@@ -17,6 +17,7 @@ Cypress.Commands.add("kcLogin", (user: string) => {
         "Authorization": `Basic ${base64authHdr}`
       },
       body: {
+        client_id,
         username: userData.username,
         password: userData.password,
         grant_type: "password",
