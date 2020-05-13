@@ -16,6 +16,7 @@ Cypress.Commands.add("kcLogin", function (user) {
                 "Authorization": "Basic " + base64authHdr
             },
             body: {
+                scope: "openid",
                 username: userData.username,
                 password: userData.password,
                 grant_type: "password",
