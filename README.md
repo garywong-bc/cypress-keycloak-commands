@@ -172,7 +172,7 @@ MIT
 
 ## Contributors ✨
 
-NOTE This is 100% the work of [Frex87](https://github.com/Fredx87); this fork is merely an attempt to bring in idpHint for a specialised case of KeyCloak Authentication. Thanks to Gianluca Frediani and the others below.
+NOTE This is 100% the work of [Frex87](https://github.com/Fredx87); this fork is merely a customization for a specialised case of KeyCloak Authentication. Thanks to Gianluca Frediani and the others below.
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 

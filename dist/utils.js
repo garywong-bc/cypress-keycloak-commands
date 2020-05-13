@@ -14,18 +14,6 @@ function createUUID() {
     return uuid;
 }
 exports.createUUID = createUUID;
-function getAuthCodeFromLocation(location) {
-    var url = new URL(location);
-    var params = url.search.substring(1).split("&");
-    for (var _i = 0, params_1 = params; _i < params_1.length; _i++) {
-        var param = params_1[_i];
-        var _a = param.split("="), key = _a[0], value = _a[1];
-        if (key === "code") {
-            return value;
-        }
-    }
-}
-exports.getAuthCodeFromLocation = getAuthCodeFromLocation;
 function decodeToken(str) {
     str = str.split(".")[1];
     str = str.replace("/-/g", "+");
