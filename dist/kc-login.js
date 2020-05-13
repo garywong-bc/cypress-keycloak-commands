@@ -12,12 +12,13 @@ Cypress.Commands.add("kcLogin", function (user) {
             url: authBaseUrl + "/realms/" + realm + "/protocol/openid-connect/token",
             followRedirect: false,
             form: true,
-            headers: {
-                "Authorization": "Basic " + base64authHdr
-            },
+            // headers: {
+            //   "Authorization": `Basic ${base64authHdr}`
+            // },
             body: {
                 username: userData.username,
                 password: userData.password,
+                client_id: client_id,
                 grant_type: "password",
             }
         })
