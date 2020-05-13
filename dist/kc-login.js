@@ -13,6 +13,7 @@ Cypress.Commands.add("kcLogin", function (user) {
             qs: {
                 username: userData.username,
                 password: userData.password,
+                kc_idp_hint: "idir"
             },
             body: {
                 username: userData.username,
