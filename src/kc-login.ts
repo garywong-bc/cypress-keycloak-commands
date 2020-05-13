@@ -10,6 +10,7 @@ Cypress.Commands.add("kcLogin", (user: string) => {
     cy.log('1 redirect_uri: ' + Cypress.config("baseUrl") );
 
     cy.request({
+      method: "POST", 
       url: `${authBaseUrl}/realms/${realm}/protocol/openid-connect/token`,
       followRedirect: true,
       qs: {
