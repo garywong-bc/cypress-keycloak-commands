@@ -9,15 +9,15 @@ Cypress.Commands.add("kcLogin", function (user) {
             method: "POST",
             url: authBaseUrl + "/realms/" + realm + "/protocol/openid-connect/token",
             followRedirect: false,
-            form: false,
-            headers: {
-                "Content-Type": "application/json"
-            },
+            form: true,
+            // headers: {
+            //   "Content-Type": "application/x-www-form-urlencoded"
+            // },
             qs: {
-                grant_type: "password",
-                client_id: client_id,
                 username: userData.username,
                 password: userData.password,
+                client_id: client_id,
+                grant_type: "password",
                 redirect_uri: Cypress.config("baseUrl"),
             }
         })
