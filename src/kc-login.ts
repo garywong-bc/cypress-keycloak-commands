@@ -6,7 +6,7 @@ Cypress.Commands.add("kcLogin", (user: string) => {
     const realm = Cypress.env("auth_realm");
     const client_id = Cypress.env("auth_client_id");
     const client_secret = Cypress.env("auth_client_secret");
-    const base64authHdr = btoa(`${client_id}:${client_secret}`);
+    const base64authHdr = btoa(`${client_id}${client_secret}`);
 
     cy.request({
       method: "POST", 
@@ -17,7 +17,6 @@ Cypress.Commands.add("kcLogin", (user: string) => {
         "Authorization": `Basic ${base64authHdr}`
       },
       body: {
-        scope: "openid",
         username: userData.username,
         password: userData.password,
         grant_type: "password",
