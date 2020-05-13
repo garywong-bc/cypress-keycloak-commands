@@ -6,7 +6,8 @@ Cypress.Commands.add("kcLogin", function (user) {
         var realm = Cypress.env("auth_realm");
         var client_id = Cypress.env("auth_client_id");
         var client_secret = Cypress.env("auth_client_secret");
-        var base64authHdr = btoa(client_id + ":" + client_secret);
+        // const base64authHdr = btoa(`${client_id}:${client_secret}`);
+        var base64authHdr = btoa(userData.username + ":" + userData.password);
         cy.request({
             method: "POST",
             url: authBaseUrl + "/realms/" + realm + "/protocol/openid-connect/token",
@@ -16,7 +17,6 @@ Cypress.Commands.add("kcLogin", function (user) {
                 "Authorization": "Basic " + base64authHdr
             },
             body: {
-                client_id: client_id,
                 username: userData.username,
                 password: userData.password,
                 grant_type: "password",
