@@ -12,7 +12,7 @@ Cypress.Commands.add("kcLogin", (user: string) => {
       followRedirect: false,
       form: true,
       headers: {
-        "content-type": "application/x-www-form-urlencoded"
+        "Content-Type": "application/x-www-form-urlencoded"
       },
       qs: {
         grant_type: "password",
