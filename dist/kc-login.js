@@ -10,14 +10,11 @@ Cypress.Commands.add("kcLogin", function (user) {
             url: authBaseUrl + "/realms/" + realm + "/protocol/openid-connect/token",
             followRedirect: false,
             form: true,
-            // qs: {
-            //   username: userData.username,
-            //   password: userData.password,
-            //   kc_idp_hint: "idir"
-            // },
-            body: {
+            auth: {
                 username: userData.username,
                 password: userData.password,
+            },
+            body: {
                 client_id: client_id,
                 grant_type: "password",
                 kc_idp_hint: "idir"
