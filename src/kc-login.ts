@@ -23,34 +23,37 @@ Cypress.Commands.add("kcLogin", (user: string) => {
         kc_idp_hint: idpHint
       }
     })
-      .then(response => {
-        // const html = document.createElement("html");
-        // html.innerHTML = response.body;
+      // .then(response => {
+      //   // const html = document.createElement("html");
+      //   // html.innerHTML = response.body;
 
-        // const form = html.getElementsByTagName("form")[0];
-        // const url = form.action;
+      //   // const form = html.getElementsByTagName("form")[0];
+      //   // const url = form.action;
+      //   const redirectURL = new URL(response.headers.location);
+      //   const authCode = redirectURL.searchParams.get('session_code');
+        
+      //   cy.log('2 redirectURL: ' + redirectURL ); // GW
+      //   cy.log('2 authCode: ' + authCode ); // GW
+      //   // cy.log('2 authCode: ' + authCode ); // GW
+
+      //   return cy.request({
+      //     method: "POST",
+      //     url: `${authBaseUrl}/realms/${realm}/protocol/openid-connect/token`,
+      //     followRedirect: false,
+      //     form: true,
+      //     body: {
+      //       code: authCode,
+      //       username: userData.username,
+      //       password: userData.password
+      //     }
+      //   });
+      // })
+      .then(response => {
         const redirectURL = new URL(response.headers.location);
         const authCode = redirectURL.searchParams.get('session_code');
-        
+
         cy.log('2 redirectURL: ' + redirectURL ); // GW
         cy.log('2 authCode: ' + authCode ); // GW
-        // cy.log('2 authCode: ' + authCode ); // GW
-
-        return cy.request({
-          method: "POST",
-          url: `${authBaseUrl}/realms/${realm}/protocol/openid-connect/token`,
-          followRedirect: false,
-          form: true,
-          body: {
-            username: userData.username,
-            password: userData.password
-          }
-        });
-      })
-      .then(response => {
-        const code = getAuthCodeFromLocation(response.headers["location"]);
-        
-        cy.log('3 code:', code);  // GW
 
         cy.request({
           method: "post",
@@ -58,8 +61,10 @@ Cypress.Commands.add("kcLogin", (user: string) => {
           body: {
             client_id,
             redirect_uri: Cypress.config("baseUrl"),
-            code,
-            grant_type: "authorization_code"
+            code: authCode,
+            grant_type: "authorization_code",
+            username: userData.username,
+            password: userData.password            
           },
           form: true,
           followRedirect: false

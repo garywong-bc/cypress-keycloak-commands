@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var utils_1 = require("./utils");
 Cypress.Commands.add("kcLogin", function (user) {
     Cypress.log({ name: "Login" });
     cy.fixture("users/" + user).then(function (userData) {
@@ -21,38 +20,43 @@ Cypress.Commands.add("kcLogin", function (user) {
                 kc_idp_hint: idpHint
             }
         })
+            // .then(response => {
+            //   // const html = document.createElement("html");
+            //   // html.innerHTML = response.body;
+            //   // const form = html.getElementsByTagName("form")[0];
+            //   // const url = form.action;
+            //   const redirectURL = new URL(response.headers.location);
+            //   const authCode = redirectURL.searchParams.get('session_code');
+            //   cy.log('2 redirectURL: ' + redirectURL ); // GW
+            //   cy.log('2 authCode: ' + authCode ); // GW
+            //   // cy.log('2 authCode: ' + authCode ); // GW
+            //   return cy.request({
+            //     method: "POST",
+            //     url: `${authBaseUrl}/realms/${realm}/protocol/openid-connect/token`,
+            //     followRedirect: false,
+            //     form: true,
+            //     body: {
+            //       code: authCode,
+            //       username: userData.username,
+            //       password: userData.password
+            //     }
+            //   });
+            // })
             .then(function (response) {
-            // const html = document.createElement("html");
-            // html.innerHTML = response.body;
-            // const form = html.getElementsByTagName("form")[0];
-            // const url = form.action;
             var redirectURL = new URL(response.headers.location);
             var authCode = redirectURL.searchParams.get('session_code');
             cy.log('2 redirectURL: ' + redirectURL); // GW
             cy.log('2 authCode: ' + authCode); // GW
-            // cy.log('2 authCode: ' + authCode ); // GW
-            return cy.request({
-                method: "POST",
-                url: authBaseUrl + "/realms/" + realm + "/protocol/openid-connect/token",
-                followRedirect: false,
-                form: true,
-                body: {
-                    username: userData.username,
-                    password: userData.password
-                }
-            });
-        })
-            .then(function (response) {
-            var code = utils_1.getAuthCodeFromLocation(response.headers["location"]);
-            cy.log('3 code:', code); // GW
             cy.request({
                 method: "post",
                 url: authBaseUrl + "/realms/" + realm + "/protocol/openid-connect/token",
                 body: {
                     client_id: client_id,
                     redirect_uri: Cypress.config("baseUrl"),
-                    code: code,
-                    grant_type: "authorization_code"
+                    code: authCode,
+                    grant_type: "authorization_code",
+                    username: userData.username,
+                    password: userData.password
                 },
                 form: true,
                 followRedirect: false
