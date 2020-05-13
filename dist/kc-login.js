@@ -27,15 +27,13 @@ Cypress.Commands.add("kcLogin", function (user) {
             // const form = html.getElementsByTagName("form")[0];
             // const url = form.action;
             var redirectURL = new URL(response.headers.location);
-            var urlParams = redirectURL.searchParams.get('session_code');
-            // const authCode  = JSON.stringify(urlParams);
-            var url = 'placeholder';
+            var authCode = redirectURL.searchParams.get('session_code');
             cy.log('2 redirectURL: ' + redirectURL); // GW
-            cy.log('2 urlParams: ' + urlParams); // GW
+            cy.log('2 authCode: ' + authCode); // GW
             // cy.log('2 authCode: ' + authCode ); // GW
             return cy.request({
                 method: "POST",
-                url: url,
+                url: authBaseUrl + "/realms/" + realm + "/protocol/openid-connect/token",
                 followRedirect: false,
                 form: true,
                 body: {
