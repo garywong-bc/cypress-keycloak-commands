@@ -79,7 +79,7 @@ You should always perform logout _before_ logging in a user, following the best 
 
 #### Get user tokens for calling APIs from E2E tests
 
-If you need to call backend APIs from your tests using the token of the logged user (for example to [set up the state bypassing the UI](https://docs.cypress.io/guides/getting-started/testing-your-app.html#Bypassing-your-UI)) you can get the retrieved user tokes from the kcLogin command:
+If you need to call backend APIs from your tests using the token of the logged user (for example to [set up the state bypassing the UI](https://docs.cypress.io/guides/getting-started/testing-your-app.html#Bypassing-your-UI)) you can get the retrieved user tokens from the kcLogin command:
 
 ```typescript
 describe("Keycloak Login", () => {
