@@ -5,12 +5,11 @@ Cypress.Commands.add("kcLogin", function (user) {
         var authBaseUrl = Cypress.env("auth_base_url");
         var realm = Cypress.env("auth_realm");
         var client_id = Cypress.env("auth_client_id");
-        cy.log('1 authBaseUrl: ' + authBaseUrl); // GW
-        cy.log('1 redirect_uri: ' + Cypress.config("baseUrl"));
         cy.request({
             method: "POST",
             url: authBaseUrl + "/realms/" + realm + "/protocol/openid-connect/token",
-            followRedirect: true,
+            followRedirect: false,
+            form: true,
             qs: {
                 grant_type: "password",
                 client_id: client_id,
