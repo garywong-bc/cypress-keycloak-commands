@@ -6,7 +6,7 @@ Cypress.Commands.add("kcLogin", function (user) {
         var realm = Cypress.env("auth_realm");
         var client_id = Cypress.env("auth_client_id");
         var client_secret = Cypress.env("auth_client_secret");
-        var base64authHdr = btoa("" + client_id + client_secret);
+        var base64authHdr = btoa(client_id + ":" + client_secret);
         cy.request({
             method: "POST",
             url: authBaseUrl + "/realms/" + realm + "/protocol/openid-connect/token",
