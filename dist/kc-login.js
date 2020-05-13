@@ -7,7 +7,7 @@ Cypress.Commands.add("kcLogin", function (user) {
         var client_id = Cypress.env("auth_client_id");
         cy.request({
             method: "POST",
-            url: authBaseUrl + "/realms/" + realm + "/protocol/openid-connect/token",
+            url: authBaseUrl + "/realms/" + realm + "/protocol/openid-connect/auth",
             followRedirect: false,
             form: false,
             headers: {
