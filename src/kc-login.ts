@@ -13,9 +13,9 @@ Cypress.Commands.add("kcLogin", () => {
       url: `${authBaseUrl}/realms/${realm}/protocol/openid-connect/token`,
       followRedirect: false,
       form: false,
-      // headers: {
-      //   Authorization: `Basic ${auth_header}`,
-      // },
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
       body: {
         grant_type: 'password',
         client_id,
