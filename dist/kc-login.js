@@ -1,5 +1,5 @@
 "use strict";
-Cypress.Commands.add("kcLogin", function (user) {
+Cypress.Commands.add("kcLogin", function () {
     Cypress.log({ name: "Login" });
     var authBaseUrl = Cypress.env('auth_base_url');
     var realm = Cypress.env('auth_realm');

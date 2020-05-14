@@ -1,4 +1,4 @@
-Cypress.Commands.add("kcLogin", (user: string) => {
+Cypress.Commands.add("kcLogin", () => {
   Cypress.log({ name: "Login" });
   const authBaseUrl = Cypress.env('auth_base_url')
   const realm = Cypress.env('auth_realm')
