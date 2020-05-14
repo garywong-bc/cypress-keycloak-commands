@@ -17,6 +17,8 @@ Cypress.Commands.add("kcLogin", () => {
       body: {
         grant_type: 'client_credentials',
       },
+    // }).then(response => {
+    //   return response.body;
     }).its('body')
 
   });
