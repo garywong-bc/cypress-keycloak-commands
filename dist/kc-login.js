@@ -12,7 +12,7 @@ Cypress.Commands.add("kcLogin", function () {
         method: 'POST',
         url: authBaseUrl + "/realms/" + realm + "/protocol/openid-connect/token",
         followRedirect: false,
-        form: true,
+        form: false,
         // headers: {
         //   Authorization: `Basic ${auth_header}`,
         // },
