@@ -6,16 +6,12 @@ Cypress.Commands.add("kcLogin", () => {
   const client_secret = Cypress.env('auth_client_secret')
   const username = Cypress.env('username')
   const password = Cypress.env('password')
-  // const auth_header = btoa(`${client_id}:${client_secret}`)
 
   return cy.request({
       method: 'POST',
       url: `${authBaseUrl}/realms/${realm}/protocol/openid-connect/token`,
       followRedirect: false,
       form: true,
-      // headers: {
-      //   "Content-Type": "application/x-www-form-urlencoded",
-      // },
       body: {
         grant_type: 'password',
         client_id,
